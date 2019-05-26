@@ -28,6 +28,7 @@ import com.example.desk.ui.dialog.CommentDialog;
 import com.example.desk.ui.videolist.visibility.items.ListItem;
 import com.example.desk.util.GlideCircleTransform;
 import com.example.desk.util.StringUtils;
+import com.example.desk.util.TLog;
 import com.example.desk.util.UrlUtils;
 import com.example.desk.view.CommentListView;
 import com.example.desk.view.ExpandTextView;
@@ -120,22 +121,24 @@ public abstract class BaseCircleHolder extends BaseViewHolder<PostBean> implemen
     public void bindData(PostBean circleItem, int postion) {
         super.bindData(circleItem, postion);
         if (mdata != null) {
+           // TLog.analytics("mdata = " + mdata);
             final int circleId = mdata.getId();
-            String name = mdata.getAuthor().getName();
-            String headImg = mdata.getAuthor().getPic();
+            String name = mdata.getAuthor().getUserid();
+            String headImg = mdata.getAuthor().getUserlogo();
             final String content = mdata.getContent();
             String createTime = mdata.getCreateTime();
-            final List<FavortsBean> favortDatas = mdata.getFavorts();
-            final List<CommentBean> commentsDatas = mdata.getComments();
+            final List<FavortsBean> favortDatas = mdata.getPostFavorts();
+            final List<CommentBean> commentsDatas = mdata.getPostComments();
             boolean hasFavort = favortDatas.size() > 0 ? true : false;
             boolean hasComment = commentsDatas.size() > 0 ? true : false;
 
             /**
              * 头像
              */
-            Glide.with(mContext).load(StringUtils.getImageDefaultURL(headImg)).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo)
+            //Glide.with(mContext).load(StringUtils.getImageDefaultURL(headImg)).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo)
+            //        .transform(new GlideCircleTransform(mContext)).into(mHeadIv);
+            Glide.with(mContext).load(headImg).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo)
                     .transform(new GlideCircleTransform(mContext)).into(mHeadIv);
-
             //名字
             mNameTv.setText(name);
             //时间
@@ -225,8 +228,8 @@ public abstract class BaseCircleHolder extends BaseViewHolder<PostBean> implemen
         mPraiseListView.setOnItemClickListener(new PraiseListView.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                List<FavortsBean> favorters = mdata.getFavorts();
-                String userName = favorters.get(position).getUser().getName();
+                List<FavortsBean> favorters = mdata.getPostFavorts();
+                String userName = favorters.get(position).getUser().getUserid();
                 int userId = favorters.get(position).getUser().getId();
                 Toast.makeText(MyApplication.getInstance(), userName + " &id = " + userId, Toast.LENGTH_SHORT).show();
             }
@@ -238,7 +241,7 @@ public abstract class BaseCircleHolder extends BaseViewHolder<PostBean> implemen
         mCommentList.setOnItemClickListener(new CommentListView.OnItemClickListener() {
             @Override
             public void onItemClick(int commentPosition) {
-                List<CommentBean> comments = mdata.getComments();
+                List<CommentBean> comments = mdata.getPostComments();
                 CommentBean commentItem = comments.get(commentPosition);
                 //点击是自己发表的评价
                 if (UserDao.getInstance().getUserId().equals(commentItem.getUser().getId() + "")) {//复制或者删除自己的评论
@@ -263,7 +266,7 @@ public abstract class BaseCircleHolder extends BaseViewHolder<PostBean> implemen
             @Override
             public void onItemLongClick(int commentPosition) {
                 //长按进行复制或者删除
-                List<CommentBean> comments = mdata.getComments();
+                List<CommentBean> comments = mdata.getPostComments();
                 CommentBean commentItem = comments.get(commentPosition);
                 CommentDialog dialog = new CommentDialog(mContext, presenter, commentItem, position);
                 dialog.show();

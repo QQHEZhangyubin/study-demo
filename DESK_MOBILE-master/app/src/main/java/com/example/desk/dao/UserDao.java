@@ -38,27 +38,19 @@ public class UserDao {
     }
 
     public String getName() {
-        return aCache.getAsString("name");
+        return aCache.getAsString("userid");
     }
 
-    public String getMobile() {
-        return aCache.getAsString("mobile");
+    public String getCollge() {
+        return aCache.getAsString("college");
     }
 
     public String getSex() {
         return aCache.getAsString("sex");
     }
 
-    public int getAge() {
-        return Integer.parseInt(aCache.getAsString("age"));
-    }
-
     public String getBirth() {
         return aCache.getAsString("birth");
-    }
-
-    public String getAddress() {
-        return aCache.getAsString("address");
     }
 
     public String getPwd() {
@@ -79,14 +71,13 @@ public class UserDao {
 
     public void saveUser(UserBean user) {
         aCache.put("id", user.getId() + "");
-        aCache.put("name", user.getName());
-        aCache.put("mobile", user.getMobile());
-        aCache.put("age", user.getAge() + "'");
-        aCache.put("pic", user.getPic());
-        aCache.put("pwd", user.getPwd());
-        aCache.put("sex", user.isSex() ? "女" : "男");
-        aCache.put("address", user.getAddress());
-        aCache.put("birth", user.getBirth());
+        aCache.put("userid", user.getUserid());
+        aCache.put("college", user.getCollege());
+        aCache.put("classs", user.getClasss());
+        aCache.put("pic", user.getUserlogo());
+        aCache.put("pwd", user.getPassword());
+        aCache.put("sex", user.getGender());
+        aCache.put("birth", user.getBirthday());
         String json = GsonTools.createGsonString(user);
         aCache.put("user", json);
         Log.e(TAG, "保存用户信息saveUser: " + user);
@@ -94,13 +85,12 @@ public class UserDao {
 
     public void clearUser() {
         aCache.put("id", "");
-        aCache.put("name", "");
-        aCache.put("mobile", "");
-        aCache.put("age", "");
+        aCache.put("userid", "");
+        aCache.put("college", "");
+        aCache.put("classs", "");
         aCache.put("pic", "");
         aCache.put("pwd", "");
         aCache.put("sex", "");
-        aCache.put("address", "");
         aCache.put("birth", "");
         aCache.put("user", "");
     }

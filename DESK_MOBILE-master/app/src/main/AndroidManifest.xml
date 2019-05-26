@@ -23,6 +23,10 @@
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/NoActionAppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name="com.mabeijianxi.smallvideorecord2.MediaRecorderActivity"
             android:configChanges="keyboard|keyboardHidden|screenSize"
@@ -61,13 +65,10 @@
             android:theme="@style/NoActionAppTheme"
             android:configChanges="keyboard|keyboardHidden|screenSize"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
-        <activity android:name=".ui.ImagePagerActivity2">
+        <activity android:name=".ui.ImagePagerActivity2"
+            android:theme="@style/NoActionAppTheme">
         </activity>
         <activity android:name=".ui.publish.PublishActivity"
             android:theme="@style/NoActionAppTheme">

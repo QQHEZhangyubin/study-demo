@@ -45,7 +45,7 @@ public class ImageViewHolder extends BaseCircleHolder {
     public void bindData(PostBean circleItem, int postion) {
         super.bindData(circleItem, postion);
         if (mdata != null) {
-            final List<ImageBean> photos = circleItem.getImages();
+            final List<ImageBean> photos = circleItem.getPostImages();
             if (photos != null && photos.size() > 0) {
                 multiImageView.setVisibility(View.VISIBLE);
                 multiImageView.setList(photos);

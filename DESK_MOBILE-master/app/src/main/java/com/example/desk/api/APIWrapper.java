@@ -18,6 +18,7 @@ import com.example.desk.entity.T2;
 import com.example.desk.entity.T3;
 import com.example.desk.entity.T4;
 import com.example.desk.entity.T5;
+import com.example.desk.entity.TiYu;
 import com.example.desk.entity.U2;
 import com.example.desk.entity.User;
 import com.example.desk.util.ShareUtils;
@@ -218,5 +219,21 @@ public class APIWrapper extends RetrofitUtil {
 
     public Observable<ReturnMsg> delete(String path,Map<String, RequestBody> params){
         return getmAPIService().delete(path, params);
+    }
+
+
+    //////////////////////////////
+    ///////////////////////////
+
+    public Observable<List<TiYu>>  getZaoCao(String xuehao){
+        return getmAPIService().getZaoCao(xuehao);
+    }
+
+    public Observable<List<TiYu>> getZiZhu(String xuehao){
+        return getmAPIService().getZiZhu(xuehao);
+    }
+
+    public Observable<List<TiYu>> getTuoZhan(String xuehao){
+        return getmAPIService().getTuoZhan(xuehao);
     }
 }

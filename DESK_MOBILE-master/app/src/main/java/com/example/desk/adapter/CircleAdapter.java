@@ -37,7 +37,6 @@ public class CircleAdapter extends BaseRecyclerAdapter<PostBean> implements Item
         super(mContext);
         this.presenter = presenter;
         this.mRecylerView = mRecylerView;
-        this.mContext = mContext;
     }
 
     @NonNull

@@ -24,8 +24,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class RetrofitUtil {
-    //public static final String API_HOST = "http://172.16.63.128:8080/desk/";
-    public static final String API_HOST = "http://192.168.43.119:8080";
+    public static final String API_HOST = "http://172.16.63.1:8080/desk/";
+    //public static final String API_HOST = "http://192.168.0.115:8080/desk/";
     private static Retrofit mRetrofit;
     private static APIService mAPIService;
 

@@ -14,6 +14,7 @@ import com.example.desk.R;
 import com.example.desk.been.ImageBean;
 import com.example.desk.util.DensityUtil;
 import com.example.desk.util.StringUtils;
+import com.example.desk.util.TLog;
 
 
 import java.io.File;
@@ -263,8 +264,20 @@ public class MultiImageView extends LinearLayout {
         if (photoInfo.isLocalUrl()) {
             Glide.with(getContext()).load(new File(photoInfo.getUrl())).placeholder(R.color.im_font_color_text_hint).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
         } else {
+            TLog.error("photoInfo.getUrl == " + photoInfo.getUrl() + ", photoInfo.getSize = " + photoInfo.getSize());
             String m = StringUtils.getImage_SIZE(photoInfo.getUrl(), photoInfo.getSize(), "s");
-            Glide.with(getContext()).load(m).placeholder(R.color.im_font_color_text_hint).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
+            /*
+            Glide.with(getContext())
+                    .load(m)
+                    .placeholder(R.color.im_font_color_text_hint)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imageView);
+*/
+            Glide.with(getContext())
+                    .load(photoInfo.getUrl())
+                    .placeholder(R.color.im_font_color_text_hint)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imageView);
         }
 
         return imageView;

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.desk.MyApplication;
 import com.example.desk.R;
 import com.example.desk.been.FavortsBean;
+import com.example.desk.util.TLog;
 import com.example.desk.util.spannable.CircleMovementMethod;
 import com.example.desk.util.spannable.SpannableClickable;
 
@@ -85,7 +86,10 @@ public class PraiseListView extends TextView {
             for (int i = 0; i < datas.size(); i++) {
                 item = datas.get(i);
                 if (item != null) {
-                    builder.append(setClickableSpan(item.getUser().getName(), i));
+                    if (item.getUser() == null){
+                        TLog.error("FavortsBean.GetUser == null");
+                    }
+                    builder.append(setClickableSpan(item.getUser().getUserid(), i));
                     if (i != datas.size() - 1) {
                         builder.append(", ");
                     }

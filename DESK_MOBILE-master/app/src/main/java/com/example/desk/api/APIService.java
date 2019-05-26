@@ -15,6 +15,7 @@ import com.example.desk.entity.T2;
 import com.example.desk.entity.T3;
 import com.example.desk.entity.T4;
 import com.example.desk.entity.T5;
+import com.example.desk.entity.TiYu;
 import com.example.desk.entity.U2;
 import com.example.desk.entity.User;
 
@@ -109,19 +110,26 @@ public interface APIService {
     @POST("softupdate")
     Observable<Soft2> CheckSoftWareUpdate();
 
+    @POST("tiyu/zaocao")
+    Observable<List<TiYu>> getZaoCao(@Query("xuehao") String xuehao);
+    @POST("tiyu/zhizhu")
+    Observable<List<TiYu>> getZiZhu(@Query("xuehao") String xuehao);
+    @POST("tiyu/tuozhan")
+    Observable<List<TiYu>> getTuoZhan(@Query("xuehao") String xuehao);
+
 
 
 
     /////////////////////////////////////////////////
     ///////////////////////////////////////////////
-    @POST("/api/post/read/{path}")
+    @POST("api/post/read/{path}")
     @Multipart
     Observable<ReturnMsg> get(@Path("path") String path, @PartMap Map<String, RequestBody> params);
-    @POST("/api/post/create/{path}")
+    @POST("api/post/create/{path}")
     @Multipart
     Observable<ReturnMsg> create(@Path("path") String path, @PartMap Map<String, RequestBody> params);
 
-    @POST("/api/post/delete/{path}")
+    @POST("api/post/delete/{path}")
     @Multipart
     Observable<ReturnMsg> delete(@Path("path") String path, @PartMap Map<String, RequestBody> params);
 }

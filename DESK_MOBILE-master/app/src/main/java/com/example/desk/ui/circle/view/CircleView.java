@@ -1,29 +1,25 @@
-package com.example.desk.ui.circle;
+package com.example.desk.ui.circle.view;
 
-import android.content.Context;
+
 
 import com.example.desk.been.CommentBean;
 import com.example.desk.been.CommentConfig;
 import com.example.desk.been.FavortsBean;
 import com.example.desk.been.PostBean;
 
-import com.example.desk.ui.circle.view.BasePresenter;
-import com.example.desk.ui.circle.view.BaseView;
-
-
 import java.util.List;
 
 /**
- * MVPPlugin
- *  邮箱 784787081@qq.com
+ * Created by Credit on 2017/3/3.
  */
 
-public class CircleContract {
+public interface CircleView {
 
-    interface View extends BaseView {
+    /**
+     * 对应View 回调
+     */
+    interface IxCircleView extends BaseView {
 
-        void showErrorProgress(String msg);
-        void showLoadProgress(String msg);
         /**
          * 关闭上下拉刷新界面
          *
@@ -141,6 +137,6 @@ public class CircleContract {
          * @param commentId      评价Id
          */
         void deleteComment(final int circlePosition, final int commentId);
-    }
 
+    }
 }

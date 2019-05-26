@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import com.example.desk.MainActivity;
 import com.example.desk.R;
+import com.example.desk.been.UserBean;
+import com.example.desk.dao.UserDao;
+import com.example.desk.entity.User;
 import com.example.desk.mvp.MVPBaseActivity;
 import com.example.desk.ui.register.RegisterActivity;
 import com.example.desk.util.ShareUtils;
@@ -100,11 +103,23 @@ public class LoginActivity extends MVPBaseActivity<LoginContract.View, LoginPres
     }
 
     @Override
-    public void loginSuccess(String userid, String userlogo, String passwordd) {
+    public void loginSuccess(User user) {
         ShareUtils.deleAll(getApplicationContext());
-        ShareUtils.putString(getApplicationContext(), StaticClass.userid, userid);
-        ShareUtils.putString(getApplicationContext(), StaticClass.userlogo, userlogo);
-        ShareUtils.putString(getApplicationContext(), StaticClass.password, passwordd);
+        ShareUtils.putString(getApplicationContext(), StaticClass.userid, user.getData().getUserid());
+        ShareUtils.putString(getApplicationContext(), StaticClass.userlogo, user.getData().getUserlogo());
+        ShareUtils.putString(getApplicationContext(), StaticClass.password, user.getData().getPassword());
+
+        UserBean ub = new UserBean();
+        ub.setId(user.getData().getId());
+        ub.setUserid(user.getData().getUserid());
+        ub.setCollege(user.getData().getCollege());
+        ub.setBirthday(user.getData().getBirthday());
+        ub.setClasss(user.getData().getClasss());
+        ub.setGender(user.getData().getGender());
+        ub.setUserlogo(user.getData().getUserlogo());
+        ub.setPassword(user.getData().getPassword());
+
+        UserDao.getInstance().saveUser(ub);
 
         progressDialog.dismiss();
         btnLogin.setEnabled(true);

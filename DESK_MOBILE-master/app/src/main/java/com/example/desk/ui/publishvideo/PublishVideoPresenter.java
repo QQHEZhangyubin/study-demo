@@ -63,7 +63,7 @@ public class PublishVideoPresenter extends BasePresenterImpl<PublishVideoContrac
 
                     @Override
                     public void onNext(ReturnMsg returnMsg) {
-                        TLog.analytics("onNext: 返回的数据+" + returnMsg.toString());
+                        TLog.error("onNext: 返回的数据+" + returnMsg.toString());
                         if (returnMsg.getIs() != TOLOGIN) {
                             Observable.just(returnMsg)
                                     .subscribeOn(Schedulers.io())

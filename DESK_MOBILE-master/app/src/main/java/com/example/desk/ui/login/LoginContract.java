@@ -1,5 +1,6 @@
 package com.example.desk.ui.login;
 
+import com.example.desk.entity.User;
 import com.example.desk.mvp.BasePresenter;
 import com.example.desk.mvp.BaseView;
 
@@ -11,7 +12,7 @@ import com.example.desk.mvp.BaseView;
 public class LoginContract {
     interface View extends BaseView {
         //在View层回调，根据Presenter逻辑调用
-        void loginSuccess(String userid, String userlogo, String passwordd);
+        void loginSuccess(User user);
         void loginFailed(String message);
     }
 

@@ -10,36 +10,159 @@ import java.util.List;
 public class PostBean extends ReturnMsg {
 
     /**
-     * Id : 1
-     * Content : 我勒个去
-     * CreateTime : 2017-03-06 15:34:16
-     * Type : 1
-     * LinkImg :
-     * LinkTitle :
-     * Author : {"Id":6,"Name":"LG","Mobile":"100866","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://v1.qzone.cc/avatar/201408/20/17/23/53f468ff9c337550.jpg!200x200.jpg","PostFavorts":null,"PostComments":null,"Posts":null}
-     * Images : [{"Id":1,"Url":"http://f.hiphotos.baidu.com/image/pic/item/faf2b2119313b07e97f760d908d7912396dd8c9c.jpg","Size":"","Name":"img","Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}},{"Id":2,"Url":"http://g.hiphotos.baidu.com/image/pic/item/4b90f603738da977c76ab6fab451f8198718e39e.jpg","Size":"","Name":"img","Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}},{"Id":3,"Url":"http://e.hiphotos.baidu.com/image/pic/item/902397dda144ad343de8b756d4a20cf430ad858f.jpg","Size":"","Name":"img","Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}},{"Id":4,"Url":"http://a.hiphotos.baidu.com/image/pic/item/a6efce1b9d16fdfa0fbc1ebfb68f8c5495ee7b8b.jpg","Size":"","Name":"img","Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}},{"Id":5,"Url":"http://b.hiphotos.baidu.com/image/pic/item/a71ea8d3fd1f4134e61e0f90211f95cad1c85e36.jpg","Size":"","Name":"img","Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}},{"Id":6,"Url":"http://c.hiphotos.baidu.com/image/pic/item/7dd98d1001e939011b9c86d07fec54e737d19645.jpg","Size":"","Name":"img","Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}},{"Id":7,"Url":"http://pica.nipic.com/2007-10-17/20071017111345564_2.jpg","Size":"","Name":"img","Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}}]
-     * Comments : [{"Id":7,"User":{"Id":7,"Name":"MEIZU","Mobile":"100867","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://cdn.duitang.com/uploads/item/201408/13/20140813122725_8h8Yu.jpeg","PostFavorts":null,"PostComments":null,"Posts":null},"ToReplayUser":{"Id":6,"Name":"LG","Mobile":"100866","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://v1.qzone.cc/avatar/201408/20/17/23/53f468ff9c337550.jpg!200x200.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"Content":"哈哈6","Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}},{"Id":6,"User":{"Id":4,"Name":"HUAWEI","Mobile":"100864","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://v1.qzone.cc/avatar/201308/30/22/56/5220b2828a477072.jpg%21200x200.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"ToReplayUser":{"Id":6,"Name":"LG","Mobile":"100866","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://v1.qzone.cc/avatar/201408/20/17/23/53f468ff9c337550.jpg!200x200.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"Content":"哈哈5","Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}},{"Id":5,"User":{"Id":5,"Name":"APPLE","Mobile":"100865","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://v1.qzone.cc/avatar/201308/22/10/36/521579394f4bb419.jpg!200x200.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"ToReplayUser":{"Id":6,"Name":"LG","Mobile":"100866","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://v1.qzone.cc/avatar/201408/20/17/23/53f468ff9c337550.jpg!200x200.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"Content":"哈哈4","Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}},{"Id":4,"User":{"Id":1,"Name":"FORME","Mobile":"100861","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://img.wzfzl.cn/uploads/allimg/140820/co140R00Q925-14.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"ToReplayUser":{"Id":6,"Name":"LG","Mobile":"100866","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://v1.qzone.cc/avatar/201408/20/17/23/53f468ff9c337550.jpg!200x200.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"Content":"哈哈3","Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}},{"Id":3,"User":{"Id":1,"Name":"FORME","Mobile":"100861","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://img.wzfzl.cn/uploads/allimg/140820/co140R00Q925-14.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"ToReplayUser":{"Id":6,"Name":"LG","Mobile":"100866","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://v1.qzone.cc/avatar/201408/20/17/23/53f468ff9c337550.jpg!200x200.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"Content":"哈哈2","Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}},{"Id":2,"User":{"Id":5,"Name":"APPLE","Mobile":"100865","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://v1.qzone.cc/avatar/201308/22/10/36/521579394f4bb419.jpg!200x200.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"ToReplayUser":{"Id":6,"Name":"LG","Mobile":"100866","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://v1.qzone.cc/avatar/201408/20/17/23/53f468ff9c337550.jpg!200x200.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"Content":"哈哈1","Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}},{"Id":1,"User":{"Id":5,"Name":"APPLE","Mobile":"100865","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://v1.qzone.cc/avatar/201308/22/10/36/521579394f4bb419.jpg!200x200.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"ToReplayUser":{"Id":6,"Name":"LG","Mobile":"100866","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://v1.qzone.cc/avatar/201408/20/17/23/53f468ff9c337550.jpg!200x200.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"Content":"哈哈0","Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}}]
-     * Favorts : [{"Id":2,"User":{"Id":2,"Name":"NOKIA","Mobile":"100862","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://img.wzfzl.cn/uploads/allimg/140820/co140R00Q925-14.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}},{"Id":1,"User":{"Id":1,"Name":"FORME","Mobile":"100861","Sex":false,"Age":20,"Birth":"2017-3-3","Address":"广东天河区","Pwd":"123456","Pic":"http://img.wzfzl.cn/uploads/allimg/140820/co140R00Q925-14.jpg","PostFavorts":null,"PostComments":null,"Posts":null},"Belong":{"Id":1,"Content":"","CreateTime":"","Type":0,"LinkImg":"","LinkTitle":"","Author":null,"Images":null,"Comments":null,"Favorts":null,"VideoUrl":"","VideoImgUrl":""}}]
-     * VideoUrl :
-     * VideoImgUrl :
+     * id : 1
+     * content : zhihsfh
+     * createTime : 54545
+     * type : 2
+     * linkImg : https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg
+     * linkTitle : 立夏
+     * authorId : null
+     * videoUrl : https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg
+     * videoImgUrl : https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg
+     * linkUrl : https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg
+     * linkDesc : 夏天来了
+     * author : {"id":1,"userid":"2016021050","college":"计算机与控制工程学院","classs":"软件161","password":"25f9e794323b453885f5181f1b624d0b","birthday":"1998-10-23","email":"13608428279@163.com","gender":"男","userlogo":null}
+     * postImages : [{"id":1,"url":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","size":"dfs","name":"2016021052","belongId":null,"belong":{"id":1,"content":"zhihsfh","createTime":"2016-10-10","type":2,"linkImg":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkTitle":"立夏","authorId":1,"videoUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","videoImgUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkDesc":"夏天来了","author":null,"postImages":null,"postComments":null,"postFavorts":null}}]
+     * postComments : [{"id":1,"userId":null,"toReplyUserId":null,"content":"你睡得不对","belongId":null,"type":0,"user":{"id":5,"userid":"2016162127","college":"哲法学院","classs":"法学162","password":"b474ab2ebdfd5b3275c50620b6e95bb2","birthday":"1997-01-16","email":"yangkuo6000@126.com","gender":"男","userlogo":null},"toreplyuser":{"id":2,"userid":"2016021051","college":"计算机与控制工程学院","classs":"软件161","password":"25f9e794323b453885f5181f1b624d0b","birthday":"1998-10-23","email":"13608428279@163.com","gender":"男","userlogo":"http://172.16.63.128:8080/photo/2019_04_12_12_04_954.png"},"belong":{"id":1,"content":"zhihsfh","createTime":"2016-10-10","type":2,"linkImg":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkTitle":"立夏","authorId":1,"videoUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","videoImgUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkDesc":"夏天来了","author":null,"postImages":null,"postComments":null,"postFavorts":null}}]
+     * postFavorts : [{"id":1,"userId":null,"belongId":null,"user":{"id":3,"userid":"2016021110","college":"计算机与控制工程学院","classs":"计本171","password":"23d2dbc76fb86ff4317ff11e72696315","birthday":"1996－10－30","email":"984813212@qq.com","gender":"女","userlogo":null},"belong":{"id":1,"content":"zhihsfh","createTime":"2016-10-10","type":2,"linkImg":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkTitle":"立夏","authorId":1,"videoUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","videoImgUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkDesc":"夏天来了","author":null,"postImages":null,"postComments":null,"postFavorts":null}},{"id":2,"userId":null,"belongId":null,"user":{"id":5,"userid":"2016162127","college":"哲法学院","classs":"法学162","password":"b474ab2ebdfd5b3275c50620b6e95bb2","birthday":"1997-01-16","email":"yangkuo6000@126.com","gender":"男","userlogo":null},"belong":{"id":1,"content":"zhihsfh","createTime":"2016-10-10","type":2,"linkImg":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkTitle":"立夏","authorId":1,"videoUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","videoImgUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkDesc":"夏天来了","author":null,"postImages":null,"postComments":null,"postFavorts":null}},{"id":3,"userId":null,"belongId":null,"user":{"id":4,"userid":"2016021155","college":"计算机与控制工程学院","classs":"计本163","password":"26ed6bc535c57fc5ab4cb4dc95f49c0c","birthday":"0000-00-00","email":"1234567890@qq.com","gender":"男","userlogo":null},"belong":{"id":1,"content":"zhihsfh","createTime":"2016-10-10","type":2,"linkImg":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkTitle":"立夏","authorId":1,"videoUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","videoImgUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkUrl":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557981101&di=1d31e56e04e26f9fcb7d790fb1852952&imgtype=jpg&er=1&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F5788b43e000e7.jpg","linkDesc":"夏天来了","author":null,"postImages":null,"postComments":null,"postFavorts":null}}]
      */
 
-    private int Id;
-    private String Content;
-    private String CreateTime;
-    private int Type;
-    private String LinkImg;
-    private String LinkTitle;
-    private String LinkUrl;
-    private String LinkDesc;
 
-    private UserBean Author;
-    private String VideoUrl;
-    private String VideoImgUrl;
-    private List<ImageBean> Images;
-    private List<CommentBean> Comments;
-    private List<FavortsBean> Favorts;
+    private int id;
+    private String content;
+    private String createTime;
+    private int type;
+    private String linkImg;
+    private String linkTitle;
+    private int authorId;
+    private String videoUrl;
+    private String videoImgUrl;
+    private String linkUrl;
+    private String linkDesc;
+    private UserBean author;
+    private List<ImageBean> postImages;
+    private List<CommentBean> postComments;
+    private List<FavortsBean> postFavorts;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getLinkImg() {
+        return linkImg;
+    }
+
+    public void setLinkImg(String linkImg) {
+        this.linkImg = linkImg;
+    }
+
+    public String getLinkTitle() {
+        return linkTitle;
+    }
+
+    public void setLinkTitle(String linkTitle) {
+        this.linkTitle = linkTitle;
+    }
+
+    public int getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public String getVideoImgUrl() {
+        return videoImgUrl;
+    }
+
+    public void setVideoImgUrl(String videoImgUrl) {
+        this.videoImgUrl = videoImgUrl;
+    }
+
+    public String getLinkUrl() {
+        return linkUrl;
+    }
+
+    public void setLinkUrl(String linkUrl) {
+        this.linkUrl = linkUrl;
+    }
+
+    public String getLinkDesc() {
+        return linkDesc;
+    }
+
+    public void setLinkDesc(String linkDesc) {
+        this.linkDesc = linkDesc;
+    }
+
+    public UserBean getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(UserBean author) {
+        this.author = author;
+    }
+
+    public List<ImageBean> getPostImages() {
+        return postImages;
+    }
+
+    public void setPostImages(List<ImageBean> postImages) {
+        this.postImages = postImages;
+    }
+
+    public List<CommentBean> getPostComments() {
+        return postComments;
+    }
+
+    public void setPostComments(List<CommentBean> postComments) {
+        this.postComments = postComments;
+    }
+
+    public List<FavortsBean> getPostFavorts() {
+        return postFavorts;
+    }
+
+    public void setPostFavorts(List<FavortsBean> postFavorts) {
+        this.postFavorts = postFavorts;
+    }
 
     private boolean expand;
 
@@ -92,131 +215,17 @@ public class PostBean extends ReturnMsg {
         this.expand = expand;
     }
 
-    public int getId() {
-        return Id;
-    }
 
-    public void setId(int id) {
-        Id = id;
-    }
 
-    public String getContent() {
-        return Content;
-    }
 
-    public void setContent(String content) {
-        Content = content;
-    }
 
-    public String getCreateTime() {
-        return CreateTime;
-    }
 
-    public void setCreateTime(String createTime) {
-        CreateTime = createTime;
-    }
 
-    public int getType() {
-        return Type;
-    }
-
-    public void setType(int type) {
-        Type = type;
-    }
-
-    public String getLinkImg() {
-        return LinkImg;
-    }
-
-    public void setLinkImg(String linkImg) {
-        LinkImg = linkImg;
-    }
-
-    public String getLinkTitle() {
-        return LinkTitle;
-    }
-
-    public void setLinkTitle(String linkTitle) {
-        LinkTitle = linkTitle;
-    }
-
-    public UserBean getAuthor() {
-        return Author;
-    }
-
-    public void setAuthor(UserBean author) {
-        Author = author;
-    }
-
-    public String getVideoUrl() {
-        return VideoUrl;
-    }
-
-    public void setVideoUrl(String videoUrl) {
-        VideoUrl = videoUrl;
-    }
-
-    public String getVideoImgUrl() {
-        return VideoImgUrl;
-    }
-
-    public void setVideoImgUrl(String videoImgUrl) {
-        VideoImgUrl = videoImgUrl;
-    }
-
-    public String getLinkUrl() {
-        return LinkUrl;
-    }
-
-    public void setLinkUrl(String linkUrl) {
-        LinkUrl = linkUrl;
-    }
-
-    public String getLinkDesc() {
-        return LinkDesc;
-    }
-
-    public void setLinkDesc(String linkDesc) {
-        LinkDesc = linkDesc;
-    }
-
-    public List<ImageBean> getImages() {
-        if (Images == null) {
-            Images = new ArrayList<>();
-        }
-        return Images;
-    }
-
-    public void setImages(List<ImageBean> images) {
-        Images = images;
-    }
-
-    public List<CommentBean> getComments() {
-        if (Comments == null) {
-            Comments = new ArrayList<>();
-        }
-        return Comments;
-    }
-
-    public void setComments(List<CommentBean> comments) {
-        Comments = comments;
-    }
-
-    public List<FavortsBean> getFavorts() {
-        if (Favorts == null) {
-            Favorts = new ArrayList<>();
-        }
-        return Favorts;
-    }
-
-    public void setFavorts(List<FavortsBean> favorts) {
-        Favorts = favorts;
-    }
 
     public boolean getCurUserFavortId(String userId) {
-        if (Favorts != null && Favorts.size() > 0) {
+        if (postFavorts != null && postFavorts.size() > 0) {
 
-            for (FavortsBean f : Favorts) {
+            for (FavortsBean f : postFavorts) {
                 if (String.valueOf(f.getUser().getId()).equals(userId)) {
                     return true;
                 }

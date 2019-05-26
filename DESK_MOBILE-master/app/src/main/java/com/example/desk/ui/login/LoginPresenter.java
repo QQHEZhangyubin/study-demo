@@ -20,6 +20,7 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
     private String userid;
     private String userlogo;
     private String passwordd;
+    private User user2;
     @Override
     public void login(String username, final String password) {
         APIWrapper.getInstance().loginuser(username,password)
@@ -60,7 +61,7 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
 
             @Override
             public void onNext(User user) {
-                TLog.log(user.getData().getUserid());
+                /*TLog.log(user.getData().getUserid());
                 if (user.getError_code() == 1){
                     mView.loginFailed("用户信息不存在");
                 }else if (user.getError_code() == 0){
@@ -68,7 +69,8 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
                     userlogo = user.getData().getUserlogo();
                     passwordd = password;
 
-                }
+                }*/
+                user2 = user;
             }
 
             @Override
@@ -79,7 +81,7 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View> implem
 
             @Override
             public void onComplete() {
-                mView.loginSuccess(userid,userlogo,passwordd);
+                mView.loginSuccess(user2);
             }
         });
     }

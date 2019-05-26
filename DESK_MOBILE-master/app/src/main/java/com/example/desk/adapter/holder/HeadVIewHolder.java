@@ -42,9 +42,10 @@ public class HeadVIewHolder extends BaseViewHolder {
         //TODO:
         UserBean user = UserDao.getInstance().getUser();
         if (user != null) {
-            Glide.with(mContext).load(StringUtils.getImageDefaultURL(user.getPic())).into(mHeadIv);
+            //Glide.with(mContext).load(StringUtils.getImageDefaultURL(user.getUserlogo())).into(mHeadIv);
+            Glide.with(mContext).load(user.getUserlogo()).into(mHeadIv);
         }
-        mNameTv.setText(user.getName());
+        mNameTv.setText(user.getUserid());
 
     }
 

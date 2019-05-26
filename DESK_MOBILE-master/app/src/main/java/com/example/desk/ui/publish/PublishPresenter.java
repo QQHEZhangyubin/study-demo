@@ -47,7 +47,7 @@ public class PublishPresenter extends BasePresenterImpl<PublishContract.View> im
             photos.put("haveimg", RequestBody.create(null, "done"));
         }
 
-        Observable<ReturnMsg> z = APIWrapper.getInstance().create("post", photos);
+        Observable<ReturnMsg> z = APIWrapper.getInstance().create("post1", photos);
         execute(z,observer);
     }
 

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -37,7 +38,7 @@ import com.example.desk.been.CommentBean;
 import com.example.desk.been.CommentConfig;
 import com.example.desk.been.FavortsBean;
 import com.example.desk.been.PostBean;
-import com.example.desk.mvp.MVPBaseActivity;
+import com.example.desk.ui.circle.view.CircleView;
 import com.example.desk.ui.publish.PublishActivity;
 import com.example.desk.ui.publishvideo.PublishVideoActivity;
 import com.example.desk.ui.videolist.visibility.calculator.SingleListViewItemActiveCalculator;
@@ -63,7 +64,7 @@ import butterknife.Unbinder;
  * 邮箱 784787081@qq.com
  */
 
-public class CircleActivity extends MVPBaseActivity<CircleContract.View, CirclePresenter> implements CircleContract.View,View.OnClickListener, OnRefreshListener, OnLoadMoreListener {
+public class CircleActivity extends AppCompatActivity implements CircleView.IxCircleView,View.OnClickListener, OnRefreshListener, OnLoadMoreListener {
     @BindView(R.id.tv2)
     TextView tv2;
     @BindView(R.id.progressBar)
@@ -115,7 +116,7 @@ public class CircleActivity extends MVPBaseActivity<CircleContract.View, CircleP
     private SingleListViewItemActiveCalculator mCalculator;
     private static final int PUBILISH_REQUEST_CODE = 123;
     public static final String VIDEO_BROAD_ACTION = "video_pubilsh_success";
-
+    private CirclePresenter presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -134,7 +135,7 @@ public class CircleActivity extends MVPBaseActivity<CircleContract.View, CircleP
             if (circleAdapter.getItemCount() > 0) {
                 progressBar.setVisibility(View.VISIBLE);
             }
-            mPresenter.loadData(StaticClass.LOAD_REFRESH);
+            presenter.loadData(StaticClass.LOAD_REFRESH);
         }
     }
     //第一次加载时间
@@ -202,7 +203,9 @@ public class CircleActivity extends MVPBaseActivity<CircleContract.View, CircleP
 
         layoutManager = new LinearLayoutManager(this);
         //presenter = new CirclePresenter(getActivity(), this);
-        circleAdapter = new CircleAdapter(this, mPresenter, swipeTarget);
+
+        presenter = new CirclePresenter(this, this);
+        circleAdapter = new CircleAdapter(this, presenter, swipeTarget);
 
         mCalculator = new SingleListViewItemActiveCalculator(circleAdapter,
                 new RecyclerViewItemPositionGetter(layoutManager, swipeTarget));
@@ -362,6 +365,32 @@ public class CircleActivity extends MVPBaseActivity<CircleContract.View, CircleP
     }
 
     @Override
+    public void showNoDataProgress() {
+        swipeTarget.setVisibility(View.GONE);
+        showloadNoDataView("服务器出错 ");
+    }
+
+    /**
+     * 显示加载没有数据页面
+     *
+     * @param msg
+     */
+    private void showloadNoDataView(String msg) {
+        progressBar.setVisibility(View.GONE);
+        if (mLlLoad != null) {
+            mLlLoad.setVisibility(View.VISIBLE);
+            mTvload.setVisibility(View.VISIBLE);
+            if (!TextUtils.isEmpty(msg)) {
+                mTvload.setText(msg);
+            } else {
+                mTvload.setText("暂没有记录");
+            }
+            mLoadPro.setVisibility(View.GONE);
+            mReload.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
     public void showLoadProgress(String msg) {
         if (circleAdapter.getItemCount() == 0) {
             swipeToLoadLayout.setVisibility(View.GONE);
@@ -395,17 +424,17 @@ public class CircleActivity extends MVPBaseActivity<CircleContract.View, CircleP
         TLog.analytics("updateAddFavorite: 添加点赞成功" + addItem.toString());
         List<PostBean> list = circleAdapter.getmData();
         if (list != null && list.size() > circlePosition) {
-            list.get(circlePosition).getFavorts().add(addItem);
+            list.get(circlePosition).getPostFavorts().add(addItem);
             circleAdapter.notifyDataSetChanged();
         }
     }
 
     @Override
     public void updateDeleteFavort(int circlePosition, int userId) {
-        TLog.analytics("updateDeleteFavort: 删除点赞成功" + userId);
+        TLog.error("updateDeleteFavort: 删除点赞成功" + userId);
         List<PostBean> list = circleAdapter.getmData();
         if (list != null && list.size() > circlePosition) {
-            List<FavortsBean> favorts = list.get(circlePosition).getFavorts();
+            List<FavortsBean> favorts = list.get(circlePosition).getPostFavorts();
             int pos = -1;
             for (int i = 0; i < favorts.size(); i++) {
                 if (favorts.get(i).getUser().getId() == userId) {
@@ -425,7 +454,7 @@ public class CircleActivity extends MVPBaseActivity<CircleContract.View, CircleP
     public void updateAddComment(int circlePosition, CommentBean addItem) {
         List<PostBean> list = circleAdapter.getmData();
         if (list != null && list.size() > circlePosition) {
-            list.get(circlePosition).getComments().add(addItem);
+            list.get(circlePosition).getPostComments().add(addItem);
             circleAdapter.notifyDataSetChanged();
         }
 
@@ -436,7 +465,7 @@ public class CircleActivity extends MVPBaseActivity<CircleContract.View, CircleP
         TLog.analytics("updateAddComment: 删除评价" + commentId);
         List<PostBean> list = circleAdapter.getmData();
         if (list != null && list.size() > circlePosition) {
-            List<CommentBean> comments = list.get(circlePosition).getComments();
+            List<CommentBean> comments = list.get(circlePosition).getPostComments();
             int pos = -1;
             for (int i = 0; i < comments.size(); i++) {
                 if (comments.get(i).getId() == commentId) {
@@ -477,6 +506,9 @@ public class CircleActivity extends MVPBaseActivity<CircleContract.View, CircleP
 
     @Override
     public void updateloadData(int loadType, List<PostBean> datas) {
+        //TODO：检查返回的datas数据完整性
+//        TLog.log("=="+datas.get(0).getPostFavorts().get(0).getUser().getUserid());
+        //Toast.makeText(CircleActivity.this,"=="+datas.get(0).getPostFavorts().get(0).getUser().getUserid(),Toast.LENGTH_LONG).show();
         progressBar.setVisibility(View.GONE);
         closeLoadView();
         swipeToLoadLayout.setVisibility(View.VISIBLE);
@@ -552,16 +584,16 @@ public class CircleActivity extends MVPBaseActivity<CircleContract.View, CircleP
         switch (v.getId()) {
             case R.id.reload_ll:
                 lastTime = 0;
-                mPresenter.loadData(StaticClass.LOAD_REFRESH);
+                presenter.loadData(StaticClass.LOAD_REFRESH);
                 break;
             case R.id.sendIv: //发布评论
-                if (mPresenter != null) {
+                if (presenter != null) {
                     String content = mCircleEdit.getText().toString().trim();
                     if (TextUtils.isEmpty(content)) {
                         Toast.makeText(this, "评论内容不能为空...", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    mPresenter.addComment(content,commentConfig);
+                    presenter.addComment(content,commentConfig);
                 }
                 updateEditTextBodyVisible(View.GONE, null);
                 break;
@@ -608,12 +640,12 @@ public class CircleActivity extends MVPBaseActivity<CircleContract.View, CircleP
 
     @Override
     public void onLoadMore() {
-        mPresenter.loadData(StaticClass.LOAD_MORE);
+        presenter.loadData(StaticClass.LOAD_MORE);
     }
 
     @Override
     public void onRefresh() {
-        mPresenter.loadData(StaticClass.LOAD_REFRESH);
+        presenter.loadData(StaticClass.LOAD_REFRESH);
     }
 
     @Override
@@ -667,5 +699,6 @@ public class CircleActivity extends MVPBaseActivity<CircleContract.View, CircleP
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(videoBroadCast);
+
     }
 }

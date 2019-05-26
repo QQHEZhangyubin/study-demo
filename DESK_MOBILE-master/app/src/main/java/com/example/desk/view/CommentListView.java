@@ -122,19 +122,19 @@ public class CommentListView extends LinearLayout {
         final CircleMovementMethod circleMovementMethod = new CircleMovementMethod(itemSelectorColor, itemSelectorColor);
 
         final CommentBean bean = mDatas.get(position);
-        String name = bean.getUser().getName();
+        String name = bean.getUser().getUserid();
         int id = bean.getId();
         String toReplyName = "";
-        if (bean.getToReplayUser() != null) {
-            toReplyName = bean.getToReplayUser().getName();
+        if (bean.getToreplyuser() != null) {
+            toReplyName = bean.getToreplyuser().getUserid();
         }
 
         SpannableStringBuilder builder = new SpannableStringBuilder();
-        builder.append(setClickableSpan(name, bean.getUser().getName()));
+        builder.append(setClickableSpan(name, bean.getUser().getUserid()));
 
         if (bean.getType() == CommentBean.REPLAY) {
             builder.append(" 回复 ");
-            builder.append(setClickableSpan(toReplyName, bean.getToReplayUser().getName()));
+            builder.append(setClickableSpan(toReplyName, bean.getToreplyuser().getUserid()));
         }
         builder.append(": ");
         String contentBodyStr = bean.getContent();

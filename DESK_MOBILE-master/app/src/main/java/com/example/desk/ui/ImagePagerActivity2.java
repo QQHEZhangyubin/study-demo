@@ -62,7 +62,7 @@ public class ImagePagerActivity2 extends AppCompatActivity {
     private boolean showDelete = false;
 
     public static void startImagePagerActivity(Context context, List<String> imgUrls, int position, ImageSize imageSize) {
-        Intent intent = new Intent(context, ImagePagerActivity.class);
+        Intent intent = new Intent(context, ImagePagerActivity2.class);
         intent.putStringArrayListExtra(INTENT_IMGURLS, new ArrayList<String>(imgUrls));
         intent.putExtra(INTENT_POSITION, position);
         intent.putExtra(INTENT_IMAGESIZE, imageSize);
@@ -289,8 +289,10 @@ public class ImagePagerActivity2 extends AppCompatActivity {
                     load = Glide.with(context)
                             .load(imgurl);
                 } else {
+                   // load = Glide.with(context)
+                     //       .load(StringUtils.getImageDefaultURL(imgurl));
                     load = Glide.with(context)
-                            .load(StringUtils.getImageDefaultURL(imgurl));
+                            .load(imgurl);
                 }
                 load.diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(new GlideDrawableImageViewTarget(imageView) {

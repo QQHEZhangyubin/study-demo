@@ -1,6 +1,7 @@
 package com.example.desk.ui.circle;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -14,8 +15,8 @@ import com.example.desk.been.FavortsBean;
 import com.example.desk.been.PostBean;
 import com.example.desk.been.ReturnMsg;
 import com.example.desk.dao.UserDao;
-import com.example.desk.mvp.BasePresenterImpl;
-import com.example.desk.mvp.BaseView;
+
+import com.example.desk.ui.circle.view.CircleView;
 import com.example.desk.util.DialogUtil;
 import com.example.desk.util.OfflineACache;
 import com.example.desk.util.StringUtils;
@@ -51,15 +52,19 @@ import static com.example.desk.util.StaticClass.POST_OP;
  *  邮箱 784787081@qq.com
  */
 
-public class CirclePresenter extends BasePresenterImpl<CircleContract.View> implements CircleContract.Presenter{
+public class CirclePresenter implements CircleContract.Presenter{
     private Disposable disposable;
+    private CircleView.IxCircleView view;
     private static final String TAG = "CirclePresenter";
     public static final String OFFLINE_JSON = "offlineJson";
     ////////////////
     private int LOAD_STATE = 0X100;
 /////////////////////
-    /*public CirclePresenter(Context context) {
+        private Context context;
+    public CirclePresenter(@NonNull Context context, @NonNull CircleView.IxCircleView view) {
+        this.view = view;
         pageIndex = 0;
+        this.context = context;
         aCache = OfflineACache.get(context);
         this.context = context;
         requestTags = new HashMap<>();
@@ -79,7 +84,7 @@ public class CirclePresenter extends BasePresenterImpl<CircleContract.View> impl
         requestTags.put(FAVORT_OP, Favort);
         requestTags.put(COMMENT_OP, Comment);
         requestTags.put(POST_OP, Post);
-    }*/
+    }
 
     private int pageSize = 10;
     private int pageIndex = 0;
@@ -87,12 +92,11 @@ public class CirclePresenter extends BasePresenterImpl<CircleContract.View> impl
     private OfflineACache aCache;
 
     private Map<Integer, Map<Integer, String>> requestTags;
-    private Context context;
 
     @Override
     public void loadData(int loadType) {
         if (LOAD_STATE == NOTE_LOAD) {
-            mView.showLoadProgress("正在加载中..");
+            view.showLoadProgress("正在加载中..");
         }
         if(loadType == LOAD_MORE) {
             pageIndex++;
@@ -193,7 +197,6 @@ public class CirclePresenter extends BasePresenterImpl<CircleContract.View> impl
 
                     @Override
                     public void onNext(ReturnMsg returnMsg) {
-                        TLog.analytics("onNext: 返回的数据+" + returnMsg.toString());
                         if (returnMsg.getIs() != TOLOGIN) {
                             Observable.just(returnMsg)
                                     .subscribeOn(Schedulers.io())
@@ -235,47 +238,47 @@ public class CirclePresenter extends BasePresenterImpl<CircleContract.View> impl
                 DialogUtil.dismissToatLoadingDialog();
                 Log.e(TAG, "onError: 加载出错:" + e.getMessage());
                 if (LOAD_STATE == NOTE_LOAD) {
-                    mView.showErrorProgress("加载出错 ");
+                    view.showErrorProgress("加载出错 ");
                 }
 
                 switch (op) {
                     case LOAD_OP:
                         //关闭加载界面
-                        mView.closeSwipeView(e.getMessage());
+                        view.closeSwipeView(e.getMessage());
                         if (mode == LOAD_REFRESH) {
                             //Toast.makeText(context, "刷新失败，请检查网络", Toast.LENGTH_LONG).show();
-                            mView.makeText("刷新失败，请检查网络");
+                            view.makeText("刷新失败，请检查网络");
                         } else {
                             pageIndex--;
                             //Toast.makeText(context, "加载失败，请检查网络", Toast.LENGTH_LONG).show();
-                            mView.makeText("加载失败，请检查网络");
+                            view.makeText("加载失败，请检查网络");
                         }
                         break;
                     case FAVORT_OP:
                         if (mode == OP_ADD) {
                             //Toast.makeText(context, "点赞失败，请检查网络", Toast.LENGTH_LONG).show();
-                            mView.makeText("点赞失败，请检查网络");
+                            view.makeText("点赞失败，请检查网络");
                         } else {
                             //Toast.makeText(context, "取消点赞失败，请检查网络", Toast.LENGTH_LONG).show();
-                            mView.makeText("取消点赞失败，请检查网络");
+                            view.makeText("取消点赞失败，请检查网络");
                         }
                         break;
                     case POST_OP:
                         if (mode == OP_ADD) {
                             //Toast.makeText(context, "发表说说失败，请检查网络", Toast.LENGTH_LONG).show();
-                            mView.makeText("发表说说失败，请检查网络");
+                            view.makeText("发表说说失败，请检查网络");
                         } else {
                             //Toast.makeText(context, "删除说说失败，请检查网络", Toast.LENGTH_LONG).show();
-                            mView.makeText("删除说说失败，请检查网络");
+                            view.makeText("删除说说失败，请检查网络");
                         }
                         break;
                     case COMMENT_OP:
                         if (mode == OP_ADD) {
                            // Toast.makeText(context, "发表评价失败，请检查网络", Toast.LENGTH_LONG).show();
-                            mView.makeText("发表评价失败，请检查网络");
+                            view.makeText("发表评价失败，请检查网络");
                         } else {
                             //Toast.makeText(context, "删除评价失败，请检查网络", Toast.LENGTH_LONG).show();
-                            mView.makeText("删除评价失败，请检查网络");
+                            view.makeText("删除评价失败，请检查网络");
                         }
                         break;
                 }
@@ -298,7 +301,8 @@ public class CirclePresenter extends BasePresenterImpl<CircleContract.View> impl
                 if (returnMsg.getIs() == APIService.SUCCESS) {
                     LOAD_STATE = ALREADEY_LOAD;
                     String json = GsonTools.createGsonString(returnMsg.getData());
-                    TLog.analytics("onNext: 返回JSON:" + returnMsg + "\n value:" + json);
+                    //TODO:检查打出的json格式
+                    TLog.error("onNext: 返回JSON:====================" + returnMsg + "\n value:" + json);
 
                     switch (op) {
                         case LOAD_OP:
@@ -307,39 +311,43 @@ public class CirclePresenter extends BasePresenterImpl<CircleContract.View> impl
                                     /**
                                      * 缓存json
                                      */
+                                    if (aCache == null){
+                                        TLog.error("aCache is null");
+                                    }
                                     aCache.put(OFFLINE_JSON, json);
-                                }
 
-                                mView.updateloadData(mode, GsonTools.changeGsonToSafeList(json, PostBean.class));
+                                }
+                                //TODO:怀疑json转bean出现问题
+                                view.updateloadData(mode, GsonTools.changeGsonToSafeList(json, PostBean.class));
 
                             }
                             break;
                         case FAVORT_OP:
                             if (mode == OP_ADD) {
-                                mView.updateAddFavorite(value, GsonTools.changeGsonToBean(json, FavortsBean.class));
+                                view.updateAddFavorite(value, GsonTools.changeGsonToBean(json, FavortsBean.class));
 
                             } else {
 
                                 double d = (double) returnMsg.getData();
                                 int id = StringUtils.stringToInt(d + "");
-                                mView.updateDeleteFavort(value, id);
+                                view.updateDeleteFavort(value, id);
                             }
                             break;
                         case POST_OP:
                             if (mode == OP_ADD) {
 
                             } else {
-                                mView.updateDeleteCircle(value);
+                                view.updateDeleteCircle(value);
                             }
                             break;
 
                         case COMMENT_OP:
                             if (mode == OP_ADD) {
-                                mView.updateAddComment(value, GsonTools.changeGsonToBean(json, CommentBean.class));
+                                view.updateAddComment(value, GsonTools.changeGsonToBean(json, CommentBean.class));
                             } else {
                                 double d = (double) returnMsg.getData();
                                 int id = StringUtils.stringToInt(d + "");
-                                mView.updateDeleteComment(value, id);
+                                view.updateDeleteComment(value, id);
                             }
                             break;
 
@@ -347,7 +355,7 @@ public class CirclePresenter extends BasePresenterImpl<CircleContract.View> impl
                     }
                 } else {
                     TLog.analytics("onNext: 失败 code:" + returnMsg.getIs() + " msg:" + returnMsg.getMsg());
-                    mView.closeSwipeView(returnMsg.getMsg());
+                    view.closeSwipeView(returnMsg.getMsg());
                 }
 
                 if (disposable != null && !disposable.isDisposed()) {
@@ -363,8 +371,8 @@ public class CirclePresenter extends BasePresenterImpl<CircleContract.View> impl
     }
 
     public void showEditTextBody(CommentConfig commentConfig){
-        if (mView != null) {
-            mView.updateEditTextBodyVisible(View.VISIBLE,commentConfig);
+        if (view != null) {
+            view.updateEditTextBodyVisible(View.VISIBLE,commentConfig);
         }
     }
 }

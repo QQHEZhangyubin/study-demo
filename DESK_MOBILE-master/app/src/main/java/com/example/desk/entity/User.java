@@ -29,6 +29,7 @@ public class User {
 
     public static class DataBean {
         /**
+         * id :2
          * userid : 2016021022
          * college : 外国语学院
          * classs : 英语135
@@ -38,6 +39,15 @@ public class User {
          * gender : 男
          * userlogo : null
          */
+        private int id;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
 
         private String userid;
         private String college;
